@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class PlayerUnit : MonoBehaviour
 {
+    public float currentHP;
+    public float maxHP;
+    public float currentMP;
+    public float maxMP;
+    public float physicalDamage;
+    public float magicalDamage;
+
     [Header("Base Unit")]
-    [SerializeField] string PlayerName;
+    public string PlayerName;
     [SerializeField] float Vigor;
     [SerializeField] float Strength;
     [SerializeField] float Dexterity;
     [SerializeField] float Mind;
     [SerializeField] float Intelligence;
-
-    private float currentHP;
-    private float maxHP;
-    private float currentMP;
-    private float maxMP;
-    private float physicalDamage;
-    private float magicalDamage;
     
     
     void Start()
