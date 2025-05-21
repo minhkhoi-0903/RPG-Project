@@ -10,6 +10,8 @@ public class Battlesystem : MonoBehaviour
 {
     public BattleState state;
 
+    public PlayerUnit playerUnit;
+
     [Header ("Enemy Setup")]
     public TextMeshProUGUI enemyName;
     enemyUnit Unit;
