@@ -16,6 +16,7 @@ public class PlayerUnit : MonoBehaviour
     private float currentMP;
     private float maxMP;
     private float physicalDamage;
+    private float magicalDamage;
     
     
     void Start()
@@ -25,6 +26,10 @@ public class PlayerUnit : MonoBehaviour
 
         maxMP = 100 + 10*Intelligence + 5*Mind;
         currentMP = maxMP;
+
+        physicalDamage = 5*Strength;
+
+        magicalDamage = 5*Mind;
     }
 
     // Update is called once per frame
