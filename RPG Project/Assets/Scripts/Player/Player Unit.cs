@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerUnit : MonoBehaviour
 {
     [Header("Base Unit")]
+    [SerializeField] string PlayerName;
     [SerializeField] float Vigor;
     [SerializeField] float Strength;
     [SerializeField] float Dexterity;
