@@ -20,7 +20,7 @@ public class PlayerUnit : MonoBehaviour
     [SerializeField] float Intelligence;
     
     
-    void Start()
+    void Awake()
     {
         maxHP = 100 + 10*Vigor;
         currentHP = maxHP;
