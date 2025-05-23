@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public GameObject player;
-    public float moveSpeed;
-    public float chaseRange;
+    public Transform player;
+    public float moveSpeed = 2f;
+    public float visionRange = 5f;
+    public LayerMask obstacleMask;
     public float waitTime = 2f;
     public Vector2 areaMin = new Vector2(-5, -5);
     public Vector2 areaMax = new Vector2(5, 5);
@@ -22,17 +23,14 @@ public class EnemyMovement : MonoBehaviour
 
     void Update()
     {
-        float distance = Vector2.Distance(transform.position, player.transform.position);
-        Vector2 direction;
-
-        if (distance < chaseRange)
+        if (CanSeePlayer())
         {
             // Đuổi theo player
-            direction = player.transform.position - transform.position;
+            Vector2 direction = player.position - transform.position;
             direction.Normalize();
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
             transform.rotation = Quaternion.Euler(Vector3.forward * angle);
         }
         else
@@ -40,6 +38,31 @@ public class EnemyMovement : MonoBehaviour
             // Di chuyển ngẫu nhiên
             Wander();
         }
+    }
+
+    bool CanSeePlayer()
+    {
+        Vector2 directionToPlayer = (player.position - transform.position).normalized;
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+
+        Debug.DrawRay(transform.position, directionToPlayer * visionRange, Color.red); // Ray debug
+
+        if (distanceToPlayer <= visionRange)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToPlayer, visionRange, obstacleMask);
+
+            if (hit.collider != null)
+            {
+                Debug.Log("Ray hit: " + hit.collider.name); // Debug tên vật bị hit
+
+                if (hit.collider.gameObject == player.gameObject)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     void Wander()
@@ -74,9 +97,25 @@ public class EnemyMovement : MonoBehaviour
 
     void ChooseNewWanderPosition()
     {
-        float x = Random.Range(areaMin.x, areaMax.x);
-        float y = Random.Range(areaMin.y, areaMax.y);
-        wanderTarget = new Vector2(x, y);
-        isWandering = true;
+        int maxTries = 10;
+        for (int i = 0; i < maxTries; i++)
+        {
+            float x = Random.Range(areaMin.x, areaMax.x);
+            float y = Random.Range(areaMin.y, areaMax.y);
+            Vector2 newTarget = new Vector2(x, y);
+
+            // Kiểm tra vị trí không nằm trong vật cản
+            Collider2D hit = Physics2D.OverlapCircle(newTarget, 0.2f, obstacleMask);
+            if (hit == null)
+            {
+                wanderTarget = newTarget;
+                isWandering = true;
+                return;
+            }
+        }
+
+        // Nếu sau nhiều lần vẫn không tìm được, giữ nguyên chỗ
+        wanderTarget = transform.position;
+        isWandering = false;
     }
 }
