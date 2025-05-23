@@ -39,6 +39,15 @@ public class PlayerUnit : MonoBehaviour
         
     }
 
-    public void takeDamage()
-    {}
+    public bool takeDamage(float dmg)
+    {
+        float delayDMG = Random.Range(-5, 5);
+        currentHP -= dmg - delayDMG;
+        Debug.Log("player take DMG");
+
+        if (currentHP <=0)
+            return true;
+        else
+            return false;
+    }
 }

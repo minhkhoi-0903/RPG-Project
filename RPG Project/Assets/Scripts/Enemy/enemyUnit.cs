@@ -6,7 +6,7 @@ using TMPro;
 public class enemyUnit : MonoBehaviour
 {
     public string unitName;
-    public int Damage;
+    public float Damage;
     public float maxHP;
     public float currentHP;
 

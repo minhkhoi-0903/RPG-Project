@@ -3116,6 +3116,7 @@ MonoBehaviour:
   mpSlider: {fileID: 1598161}
   hpText: {fileID: 35718011}
   mpText: {fileID: 704475151}
+  unitPlayer: {fileID: 1038367555}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

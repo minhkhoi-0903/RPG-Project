@@ -13,13 +13,15 @@ public class BattleHud : MonoBehaviour
     public TextMeshProUGUI hpText;
     public TextMeshProUGUI mpText;
 
-    public void SetHUD(PlayerUnit unitPlayer/*, enemyUnit unitEnemy*/)
+    public PlayerUnit unitPlayer;
+
+    public void SetHUD(PlayerUnit unitPlayer)
     {
         nameText.text = unitPlayer.PlayerName;
 
-        hpSlider.maxValue = unitPlayer.maxMP;
-        hpSlider.value = unitPlayer.currentMP;
-        hpText.text = unitPlayer.currentMP + "/" + unitPlayer.maxMP;
+        hpSlider.maxValue = unitPlayer.maxHP;
+        hpSlider.value = unitPlayer.currentHP;
+        hpText.text = unitPlayer.currentHP + "/" + unitPlayer.maxHP;
 
         mpSlider.maxValue = unitPlayer.maxMP;
         mpSlider.value = unitPlayer.currentMP;
@@ -29,5 +31,6 @@ public class BattleHud : MonoBehaviour
     public void SetHP(float hp)
     {
         hpSlider.value = hp;
+        hpText.text = hp + "/" + unitPlayer.maxHP;
     }
 }
