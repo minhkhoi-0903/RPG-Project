@@ -27,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6702455386289309828}
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -5177388603050735206, guid: 8c276d7bdeb5f0248ba8692452b60df8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6d89008e04a3a784d9ae1ea703cae98a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 6702455386289309828}
   - component: {fileID: 7091660649796245219}
   m_Layer: 0
-  m_Name: Sample Enemy
+  m_Name: Rotten Wolf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d29781baec7466c4e8346d0be0894fe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: Sample
+  unitName: Rotten Wolf
   Damage: 5
-  maxHP: 200
-  currentHP: 80
+  maxHP: 20
+  currentHP: 20

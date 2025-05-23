@@ -95,6 +95,14 @@ public class Battlesystem : MonoBehaviour
         StartCoroutine(playerAttack());
     }
 
+    public void OnEscapeButton()
+    {
+        if (state != BattleState.PLAYERTURN)
+        return;
+
+        Escape();
+    }
+
     public void EndBattle()
     {
         if (state == BattleState.WIN)
@@ -106,5 +114,11 @@ public class Battlesystem : MonoBehaviour
             //lose
             Debug.Log("you lose");
         }
+    }
+
+    public void Escape()
+    {
+        state = BattleState.ESCAPE;
+        Debug.Log("Escape!");
     }
 }
