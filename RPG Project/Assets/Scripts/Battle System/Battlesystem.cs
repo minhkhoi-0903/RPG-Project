@@ -60,12 +60,19 @@ public class Battlesystem : MonoBehaviour
 
         if (isDead)
         {
-
+            state = BattleState.WIN;
+            EndBattle();
         }
         else
         {
             state = BattleState.ENEMYTURN;
+            StartCoroutine(EnemyTurn());
         } 
+    }
+
+    IEnumerator EnemyTurn()
+    {
+        yield return new WaitForSeconds(0f);
     }
 
     public void OnAttackButton()
@@ -74,5 +81,18 @@ public class Battlesystem : MonoBehaviour
         return;
 
         StartCoroutine(playerAttack());
+    }
+
+    public void EndBattle()
+    {
+        if (state == BattleState.WIN)
+        {
+            //win
+            Debug.Log("you win");
+        }else if (state == BattleState.LOST)
+        {
+            //lose
+            Debug.Log("you lose");
+        }
     }
 }

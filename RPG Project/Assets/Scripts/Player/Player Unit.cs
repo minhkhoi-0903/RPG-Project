@@ -38,4 +38,7 @@ public class PlayerUnit : MonoBehaviour
     {
         
     }
+
+    public void takeDamage()
+    {}
 }
